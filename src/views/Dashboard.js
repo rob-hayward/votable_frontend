@@ -33,7 +33,7 @@ function Dashboard() {
                     {/* Option 1 */}
                     <div className="option">
                         <h2>Vote On Anything.</h2>
-                        <p>If there's a subject that you feel passionately about you can make your very own Votable for it! Enter here to create a question, statement, or proposal for the community to vote on.</p>
+                        <p>If there's a subject that you feel passionately about, you can make your very own Votable for it! Enter here to create a question, statement, or proposal for the community to vote on.</p>
                         <Link to="/dashboard/create_votable">
                             <button>Create A New Votable Now</button>
                         </Link>
@@ -42,7 +42,7 @@ function Dashboard() {
                     {/* Option 2 */}
                     <div className="option">
                         <h2>Vote On Everything.</h2>
-                        <p>Each Votable is a question, proposal or statement that you can have your say. See how your thoughts and feelings compare to the rest of the community.</p>
+                        <p>Each Votable is a question, proposal or statement. Vote to have your say. See how your thoughts and feelings compare to the rest of the community.</p>
                         <Link to="/dashboard/display_votables">
                             <button>Start Voting Now</button>
                         </Link>

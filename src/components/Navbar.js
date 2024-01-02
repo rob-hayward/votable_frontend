@@ -1,5 +1,7 @@
+// Navbar.js
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AuthContext from '../AuthContext';
 import smalllogo from '../assets/smalllogo.png';
 
@@ -12,32 +14,37 @@ const Navbar = ({ isLoggedIn }) => {
     navigate('/');
   };
 
-  return (
+  const logoLink = isLoggedIn ? '/dashboard' : '/';
+
+    return (
     <nav className="navbar navbar-light bg-light">
-      <Link className="navbar-brand custom-logo-padding" to="/">
+      <Link className="navbar-brand custom-logo-padding" to={logoLink}>
         <img src={smalllogo} alt="Votable Logo" style={{ height: "40px" }} />
       </Link>
-
-      <div className="dropdown custom-bars-padding">
-        <button className="navbar-toggler btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          <i className="fa-solid fa-bars"></i>
-        </button>
-        <ul className="dropdown-menu custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {isLoggedIn ? (
-            <>
-              <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
-              <li><Link className="dropdown-item" to="/dashboard/create_votable">Create New Votable</Link></li>
-              <li><Link className="dropdown-item" to="/dashboard/display_votables">Vote</Link></li>
-              <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
-            </>
-          ) : (
-            <>
-              <li><Link className="dropdown-item" to="/login">Login</Link></li>
-              <li><Link className="dropdown-item" to="/register">Register</Link></li>
-            </>
-          )}
-        </ul>
-      </div>
+        <div className="dropdown custom-bars-padding">
+            <button className="navbar-toggler btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                <FontAwesomeIcon icon="bars"/>
+            </button>
+            <ul className="dropdown-menu custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {isLoggedIn ? (
+                    <>
+                        <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                        <li><Link className="dropdown-item" to="/dashboard/create_votable">Create New Votable</Link>
+                        </li>
+                        <li><Link className="dropdown-item" to="/dashboard/display_votables">Vote</Link></li>
+                        <li>
+                            <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li><Link className="dropdown-item" to="/login">Login</Link></li>
+                        <li><Link className="dropdown-item" to="/register">Register</Link></li>
+                    </>
+                )}
+            </ul>
+        </div>
     </nav>
   );
 };

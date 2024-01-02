@@ -14,7 +14,7 @@ function Register() {
     const [message, setMessage] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const payload = {
@@ -30,20 +30,29 @@ function Register() {
             console.log(response.data);
             setMessage("Successfully registered!");
             setIsSuccess(true);
-            login();
 
-            navigate('/dashboard');
+            navigate('/login');
 
-        } catch (error) {
-            console.error("Error during registration:", error.response.data);
-            if (error.response && error.response.data) {
-                setMessage(error.response.data.detail || "An error occurred during registration. Please try again.");
+    } catch (error) {
+        console.error("Error during registration:", error.response.data);
+        if (error.response && error.response.data) {
+            // Check for specific error messages
+            if (error.response.data.username) {
+                setMessage(error.response.data.username[0]);
+            } else if (error.response.data.email) {
+                setMessage(error.response.data.email[0]);
+            } else if (error.response.data.password) {
+                setMessage(error.response.data.password[0]);
             } else {
-                setMessage("An unexpected error occurred. Please try again.");
+                setMessage("An error occurred during registration. Please try again.");
             }
-            setIsSuccess(false);
+        } else {
+            setMessage("An unexpected error occurred. Please try again.");
         }
+        setIsSuccess(false);
     }
+}
+
 
     return (
         <div className="container register-container">
